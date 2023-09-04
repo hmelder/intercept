@@ -6,7 +6,7 @@ This provides the necessary information to perform stack unwinding, and exceptio
 ### DWARF Register Number Mapping
 Note that instead of the register names, you might find numbers that are used for identifying registers in .cfi directives.
 
-Here is the corresponding mapping for x86\_64 (See: System V ABI, AMD64 Architecture Processor Supplement, $3.6.2):
+Here is the corresponding mapping for x86\_64 (See: [^1]):
 
 | Register Name | Number |
 | --- | --- |
@@ -101,3 +101,5 @@ Description: Indicate that REGISTER has been restored to the value it held at th
 
 Arguments:
     - REGISTER: The register in question
+
+[^1]: $3.6.2, System V ABI, AMD64 Architecture Processor Supplement
