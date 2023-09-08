@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 <path_to_rootfs>"
+    exit 1
+fi
+
+ROOTFS_PATH="$1"
+
+if [ ! -d "$ROOTFS_PATH" ]; then
+    echo "Error: Directory $ROOTFS_PATH does not exist."
+    exit 1
+fi
+
+# Mount essential filesystems
+mount -t proc none "$ROOTFS_PATH/proc"
+mount -t sysfs none "$ROOTFS_PATH/sys"
+mount -o bind /dev "$ROOTFS_PATH/dev"
+mount -o bind /dev/pts "$ROOTFS_PATH/dev/pts"  # For pseudoterminals like ssh sessions
+
+echo "Filesystems mounted for chroot at $ROOTFS_PATH"
+

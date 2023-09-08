@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 <path_to_rootfs>"
+    exit 1
+fi
+
+ROOTFS_PATH="$1"
+
+if [ ! -d "$ROOTFS_PATH" ]; then
+    echo "Error: Directory $ROOTFS_PATH does not exist."
+    exit 1
+fi
+
+# Unmount in reverse order
+umount "$ROOTFS_PATH/dev/pts"
+umount "$ROOTFS_PATH/dev"
+umount "$ROOTFS_PATH/sys"
+umount "$ROOTFS_PATH/proc"
+
+echo "Filesystems unmounted for chroot at $ROOTFS_PATH"
